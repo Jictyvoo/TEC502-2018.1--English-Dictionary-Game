@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="boggle_logo">
+    <file>logo_boggle_212810.png</file>
+  </qresource>
+</RCC>

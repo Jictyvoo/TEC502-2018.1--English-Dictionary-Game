@@ -1,0 +1,131 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'Room_Selection.ui'
+#
+# Created by: PyQt5 UI code generator 5.10.1
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtWidgets
+
+
+class Ui_Boggle_RoomSelection(object):
+    def setupUi(self, Boggle_RoomSelection):
+        Boggle_RoomSelection.setObjectName("Boggle_RoomSelection")
+        Boggle_RoomSelection.resize(480, 344)
+        self.centralwidget = QtWidgets.QWidget(Boggle_RoomSelection)
+        self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding,
+                                           QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy)
+        self.label_2.setMinimumSize(QtCore.QSize(50, 90))
+        self.label_2.setStyleSheet("image: url(:/boggle_logo/logo_boggle_212810.png);")
+        self.label_2.setText("")
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout_2.addWidget(self.label_2)
+        self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 460, 146))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.listWidget = QtWidgets.QListWidget(self.scrollAreaWidgetContents)
+        self.listWidget.setObjectName("listWidget")
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        self.horizontalLayout_2.addWidget(self.listWidget)
+        spacerItem = QtWidgets.QSpacerItem(60, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem)
+        self.line = QtWidgets.QFrame(self.scrollAreaWidgetContents)
+        self.line.setFrameShape(QtWidgets.QFrame.VLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.horizontalLayout_2.addWidget(self.line)
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.label.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label)
+        self.plainTextEdit = QtWidgets.QPlainTextEdit(self.scrollAreaWidgetContents)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.plainTextEdit.sizePolicy().hasHeightForWidth())
+        self.plainTextEdit.setSizePolicy(sizePolicy)
+        self.plainTextEdit.setMinimumSize(QtCore.QSize(0, 20))
+        self.plainTextEdit.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.plainTextEdit.setAutoFillBackground(False)
+        self.plainTextEdit.setCenterOnScroll(True)
+        self.plainTextEdit.setObjectName("plainTextEdit")
+        self.verticalLayout.addWidget(self.plainTextEdit)
+        self.pushButton_3 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.verticalLayout.addWidget(self.pushButton_3)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem1)
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.pushButton_4 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.horizontalLayout_3.addWidget(self.pushButton_4)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem2)
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
+        self.horizontalLayout_2.addLayout(self.verticalLayout)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout_2.addWidget(self.scrollArea)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout.addWidget(self.pushButton)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        Boggle_RoomSelection.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(Boggle_RoomSelection)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 480, 25))
+        self.menubar.setObjectName("menubar")
+        Boggle_RoomSelection.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(Boggle_RoomSelection)
+        self.statusbar.setObjectName("statusbar")
+        Boggle_RoomSelection.setStatusBar(self.statusbar)
+
+        self.retranslateUi(Boggle_RoomSelection)
+        QtCore.QMetaObject.connectSlotsByName(Boggle_RoomSelection)
+
+    def retranslateUi(self, Boggle_RoomSelection):
+        _translate = QtCore.QCoreApplication.translate
+        Boggle_RoomSelection.setWindowTitle(_translate("Boggle_RoomSelection", "Boggle Room Selection"))
+        __sortingEnabled = self.listWidget.isSortingEnabled()
+        self.listWidget.setSortingEnabled(False)
+        item = self.listWidget.item(0)
+        item.setText(_translate("Boggle_RoomSelection", "Room Name: 4/5 Players"))
+        self.listWidget.setSortingEnabled(__sortingEnabled)
+        self.label.setText(_translate("Boggle_RoomSelection", "Username:"))
+        self.pushButton_3.setText(_translate("Boggle_RoomSelection", "Configuration"))
+        self.pushButton_4.setText(_translate("Boggle_RoomSelection", "Refresh"))
+        self.pushButton_2.setText(_translate("Boggle_RoomSelection", "Join Room"))
+        self.pushButton.setText(_translate("Boggle_RoomSelection", "Create new Room"))
+
+
+'''import Client.views.resource_rc
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Boggle_RoomSelection = QtWidgets.QMainWindow()
+    ui = Ui_Boggle_RoomSelection()
+    ui.setupUi(Boggle_RoomSelection)
+    Boggle_RoomSelection.show()
+    sys.exit(app.exec_())'''
