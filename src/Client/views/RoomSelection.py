@@ -6,28 +6,28 @@ class UiBoggleRoomSelection(object):
 
     def __init__(self):
         self.__central_widget = None
-        self.verticalLayout_2 = None
-        self.label_2 = None
         self.scrollArea = None
         self.scrollAreaWidgetContents = None
+        self.verticalLayout = None
+        self.verticalLayout_2 = None
+        self.horizontalLayout = None
         self.horizontalLayout_2 = None
+        self.horizontalLayout_3 = None
         self.listWidget = None
         self.line = None
-        self.verticalLayout = None
         self.label = None
+        self.label_2 = None
         self.plainTextEdit = None
-        self.pushButton_3 = None
-        self.pushButton_2 = None
-        self.pushButton_4 = None
-        self.horizontalLayout_3 = None
-        self.horizontalLayout = None
-        self.pushButton = None
+        self.__configButton = None
+        self.__joinRoomButton = None
+        self.__refreshButton = None
+        self.__createRoomButton = None
         self.__status_bar = None
         self.__menu_bar = None
 
     def setup_ui(self, boggle_room_selection):
         boggle_room_selection.setObjectName("boggle_room_selection")
-        boggle_room_selection.resize(480, 344)
+        boggle_room_selection.resize(480, 350)
         self.__central_widget = QtWidgets.QWidget(boggle_room_selection)
         self.__central_widget.setObjectName("__central_widget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.__central_widget)
@@ -54,8 +54,6 @@ class UiBoggleRoomSelection(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.listWidget = QtWidgets.QListWidget(self.scrollAreaWidgetContents)
         self.listWidget.setObjectName("listWidget")
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
         self.horizontalLayout_2.addWidget(self.listWidget)
         spacer_item_0 = QtWidgets.QSpacerItem(60, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacer_item_0)
@@ -82,16 +80,16 @@ class UiBoggleRoomSelection(object):
         self.plainTextEdit.setCenterOnScroll(True)
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.verticalLayout.addWidget(self.plainTextEdit)
-        self.pushButton_3 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.verticalLayout.addWidget(self.pushButton_3)
+        self.__configButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.__configButton.setObjectName("__configButton")
+        self.verticalLayout.addWidget(self.__configButton)
         spacer_item_1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacer_item_1)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.pushButton_4 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.horizontalLayout_3.addWidget(self.pushButton_4)
+        self.__refreshButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.__refreshButton.setObjectName("__refreshButton")
+        self.horizontalLayout_3.addWidget(self.__refreshButton)
         spacer_item_2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacer_item_2)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
@@ -100,12 +98,12 @@ class UiBoggleRoomSelection(object):
         self.verticalLayout_2.addWidget(self.scrollArea)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.pushButton_2 = QtWidgets.QPushButton(self.__central_widget)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout.addWidget(self.pushButton_2)
-        self.pushButton = QtWidgets.QPushButton(self.__central_widget)
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.__joinRoomButton = QtWidgets.QPushButton(self.__central_widget)
+        self.__joinRoomButton.setObjectName("__joinRoomButton")
+        self.horizontalLayout.addWidget(self.__joinRoomButton)
+        self.__createRoomButton = QtWidgets.QPushButton(self.__central_widget)
+        self.__createRoomButton.setObjectName("__createRoomButton")
+        self.horizontalLayout.addWidget(self.__createRoomButton)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         boggle_room_selection.setCentralWidget(self.__central_widget)
         self.__menu_bar = QtWidgets.QMenuBar(boggle_room_selection)
@@ -119,16 +117,20 @@ class UiBoggleRoomSelection(object):
         self.__re_translate_ui(boggle_room_selection)
         QtCore.QMetaObject.connectSlotsByName(boggle_room_selection)
 
+    def add_item(self, _translate):
+        item = QtWidgets.QListWidgetItem()
+        item.setText(_translate("boggle_room_selection", "Room Name: 4/5 Players"))
+        self.listWidget.addItem(item)
+
     def __re_translate_ui(self, boggle_room_selection):
         _translate = QtCore.QCoreApplication.translate
         boggle_room_selection.setWindowTitle(_translate("boggle_room_selection", "Boggle Room Selection"))
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
-        item = self.listWidget.item(0)
-        item.setText(_translate("boggle_room_selection", "Room Name: 4/5 Players"))
         self.listWidget.setSortingEnabled(__sortingEnabled)
+        self.add_item(_translate)
         self.label.setText(_translate("boggle_room_selection", "Username:"))
-        self.pushButton_3.setText(_translate("boggle_room_selection", "Configuration"))
-        self.pushButton_4.setText(_translate("boggle_room_selection", "Refresh"))
-        self.pushButton_2.setText(_translate("boggle_room_selection", "Join Room"))
-        self.pushButton.setText(_translate("boggle_room_selection", "Create new Room"))
+        self.__configButton.setText(_translate("boggle_room_selection", "Configuration"))
+        self.__refreshButton.setText(_translate("boggle_room_selection", "Refresh"))
+        self.__joinRoomButton.setText(_translate("boggle_room_selection", "Join Room"))
+        self.__createRoomButton.setText(_translate("boggle_room_selection", "Create new Room"))
