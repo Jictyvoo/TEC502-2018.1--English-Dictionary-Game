@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'Boggle_Game.ui'
-#
-# Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtWidgets
 
 
@@ -13,10 +5,10 @@ from PyQt5 import QtCore, QtWidgets
 class UiRoomGame(object):
 
     def __init__(self):
-        self.pushButton = None
+        self.__test_word_button = None
         self.verticalLayout_3 = None
         self.verticalLayout_2 = None
-        self.verticalLayout = None
+        self.verticalLayout_1 = None
         self.time_horizontalLayout = None
         self.remainingTime = None
         self.progressBar = None
@@ -37,13 +29,25 @@ class UiRoomGame(object):
         self.guessWord_label = None
         self.word_button = None
         self._translate = None
+        self.__timer = None
 
-        self.__current_word = ""
+        self.__seconds_remaining = 180
+        self.__buttons_pressed = []
+        from Client.util.DictionaryManipulator import DictionaryManipulator
+        self.__dictionary_manipulator = DictionaryManipulator()
         self.__dice_manipulator = None
+        self.__dialog_window = None
+
+    def __call_game_over_dialog(self, message="The Game has Over"):
+        from Client.views.Game_Over_Dialog import UiGameOver
+        self.__dialog_window = QtWidgets.QDialog()
+        ui = UiGameOver(message)
+        ui.setup_ui(self.__dialog_window)
+        self.__dialog_window.show()
 
     def __button_function(self, button):
         def lambda_function():
-            self.__current_word += button.text()
+            self.__buttons_pressed.append(button)
             button.setEnabled(False)
             self.plainTextEdit.insertPlainText(button.text())
 
@@ -109,20 +113,60 @@ class UiRoomGame(object):
             count += 1
 
     def __add_found_words(self, item_text):
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        __sortingEnabled = self.listWidget.isSortingEnabled()
-        self.listWidget.setSortingEnabled(False)
-        item.setText(self._translate("room_name", item_text))
-        self.listWidget.setSortingEnabled(__sortingEnabled)
+        if not self.listWidget.findItems(item_text, QtCore.Qt.MatchRegExp):
+            item = QtWidgets.QListWidgetItem()
+            self.listWidget.addItem(item)
+            __sortingEnabled = self.listWidget.isSortingEnabled()
+            self.listWidget.setSortingEnabled(False)
+            item.setText(self._translate("room_name", item_text))
+            self.listWidget.setSortingEnabled(__sortingEnabled)
+
+    def __check_word(self):
+        inserted_word = self.plainTextEdit.toPlainText()
+        self.plainTextEdit.setPlainText("")
+        if len(inserted_word) > 1 and self.__dictionary_manipulator.words_exist(str.lower(inserted_word)):
+            self.__add_found_words(str.lower(inserted_word))
+        for button in self.__buttons_pressed:
+            button.setEnabled(True)
+
+    def __configure_button_key(self):
+        self.plainTextEdit.setReadOnly(True)
+        # self.plainTextEdit.keyPressEvent("")
+
+    def __calculate_final_score(self):
+        total_words = self.listWidget.count()
+        score = 0
+        for index in range(0, total_words):
+            score += len(self.listWidget.item(index).text())
+        return "You found %d words! And have %d final score" % (total_words, score)
+
+    def __create_timer(self):
+        def callback_tick():
+            if self.__seconds_remaining <= 0:
+                self.__timer.stop()
+                for button in self.word_button:
+                    button.setEnabled(False)
+                self.__test_word_button.setEnabled(False)
+                self.__call_game_over_dialog(self.__calculate_final_score())
+            else:
+                self.__seconds_remaining -= 1
+                self.progressBar.setValue(180 - self.__seconds_remaining)
+                self.progressBar.setFormat(self._translate("room_name", "%.0f seconds" % self.__seconds_remaining))
+
+        self.__timer = QtCore.QTimer()
+        self.__timer.timeout.connect(callback_tick)
+        self.__timer.start(1000)
 
     def setup_ui(self, room_name, active=False):
         room_name.setObjectName("room_name")
         room_name.resize(685, 390)
+
+        self._translate = QtCore.QCoreApplication.translate
+
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(room_name)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
+        self.verticalLayout_1 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_1.setObjectName("verticalLayout")
         self.time_horizontalLayout = QtWidgets.QHBoxLayout()
         self.time_horizontalLayout.setObjectName("time_horizontalLayout")
         self.remainingTime = QtWidgets.QLabel(room_name)
@@ -130,14 +174,16 @@ class UiRoomGame(object):
         self.time_horizontalLayout.addWidget(self.remainingTime)
         self.progressBar = QtWidgets.QProgressBar(room_name)
         self.progressBar.setMaximum(180)
-        self.progressBar.setProperty("value", 34)
+        self.progressBar.setMinimum(0)
+        self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar")
         self.time_horizontalLayout.addWidget(self.progressBar)
-        self.verticalLayout.addLayout(self.time_horizontalLayout)
+        self.verticalLayout_1.addLayout(self.time_horizontalLayout)
+
+        self.__create_timer()
+
         self.words_horizontalLayout = QtWidgets.QHBoxLayout()
         self.words_horizontalLayout.setObjectName("words_horizontalLayout")
-
-        self._translate = QtCore.QCoreApplication.translate
 
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setHorizontalSpacing(6)
@@ -171,7 +217,7 @@ class UiRoomGame(object):
         self.verticalLayout_2.addItem(spacer_item)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.words_horizontalLayout.addWidget(self.scrollArea)
-        self.verticalLayout.addLayout(self.words_horizontalLayout)
+        self.verticalLayout_1.addLayout(self.words_horizontalLayout)
         self.userInput_horizontalLayout = QtWidgets.QHBoxLayout()
         self.userInput_horizontalLayout.setObjectName("userInput_horizontalLayout")
         self.guessWord_label = QtWidgets.QLabel(room_name)
@@ -189,11 +235,15 @@ class UiRoomGame(object):
         self.plainTextEdit.setCenterOnScroll(True)
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.userInput_horizontalLayout.addWidget(self.plainTextEdit)
-        self.pushButton = QtWidgets.QPushButton(room_name)
-        self.pushButton.setObjectName("pushButton")
-        self.userInput_horizontalLayout.addWidget(self.pushButton)
-        self.verticalLayout.addLayout(self.userInput_horizontalLayout)
-        self.verticalLayout_3.addLayout(self.verticalLayout)
+        self.__test_word_button = QtWidgets.QPushButton(room_name)
+        self.__test_word_button.setObjectName("__test_word_button")
+
+        self.__test_word_button.clicked.connect(self.__check_word)
+        self.__configure_button_key()
+
+        self.userInput_horizontalLayout.addWidget(self.__test_word_button)
+        self.verticalLayout_1.addLayout(self.userInput_horizontalLayout)
+        self.verticalLayout_3.addLayout(self.verticalLayout_1)
 
         self.__re_translate_ui(room_name)
         self.listWidget.setCurrentRow(-1)
@@ -202,7 +252,7 @@ class UiRoomGame(object):
     def __re_translate_ui(self, room_name):
         room_name.setWindowTitle(self._translate("room_name", "Boggle Game!"))
         self.remainingTime.setText(self._translate("room_name", "Remaining Time:"))
-        self.progressBar.setFormat(self._translate("room_name", "%p seconds"))
+        self.progressBar.setFormat(self._translate("room_name", "180 seconds"))
         '''self.playersInSession_label.setText(_translate("room_name", "Players In Session:"))
         __sortingEnabled = self.listWidget_2.isSortingEnabled()
         self.listWidget_2.setSortingEnabled(False)
@@ -211,4 +261,4 @@ class UiRoomGame(object):
         self.listWidget_2.setSortingEnabled(__sortingEnabled)'''
         self.foundedWords_label.setText(self._translate("room_name", "Founded Words"))
         self.guessWord_label.setText(self._translate("room_name", "Guess Word:"))
-        self.pushButton.setText(self._translate("room_name", "Test Word"))
+        self.__test_word_button.setText(self._translate("room_name", "Test Word"))
