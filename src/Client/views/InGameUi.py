@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtWidgets
 
 
 # noinspection PyArgumentList
-class UiRoomGame(object):
+class InGameUi(object):
 
     def __init__(self):
         self.__test_word_button = None
@@ -39,9 +39,9 @@ class UiRoomGame(object):
         self.__dialog_window = None
 
     def __call_game_over_dialog(self, message="The Game has Over"):
-        from Client.views.Game_Over_Dialog import UiGameOver
+        from Client.views.GameOverUi import GameOverUi
         self.__dialog_window = QtWidgets.QDialog()
-        ui = UiGameOver(message)
+        ui = GameOverUi(message)
         ui.setup_ui(self.__dialog_window)
         self.__dialog_window.show()
 

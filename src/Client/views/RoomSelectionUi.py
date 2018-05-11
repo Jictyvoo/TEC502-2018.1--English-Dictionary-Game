@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtWidgets
 
 
 # noinspection PyArgumentList
-class UiBoggleRoomSelection(object):
+class RoomSelectionUi(object):
 
     def __init__(self):
         self.__central_widget = None

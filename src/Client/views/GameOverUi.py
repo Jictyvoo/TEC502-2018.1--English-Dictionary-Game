@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtWidgets
 
 
-class UiGameOver(object):
+class GameOverUi(object):
 
     def __init__(self, game_over_message):
         self.__verticalLayout = None

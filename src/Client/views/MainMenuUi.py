@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtWidgets
 from Client.util.resource_rc import qInitResources
 
 
-class UiMainMenu(object):
+class MainMenuUi(object):
 
     def __init__(self):
         self.__central_widget = None
@@ -83,17 +83,17 @@ class UiMainMenu(object):
     def __call_room_selection(self):
         qInitResources()
 
-        from Client.views.RoomSelection import UiBoggleRoomSelection
-        self.__boggle_room_selection = QtWidgets.QMainWindow()
-        ui = UiBoggleRoomSelection()
-        ui.setup_ui(self.__boggle_room_selection)
-        self.__main_menu.hide()
-        self.__boggle_room_selection.show()
+        from Client.views.RoomSelectionUi import RoomSelectionUi
+        # self.__boggle_room_selection = QtWidgets.QMainWindow()
+        ui = RoomSelectionUi()
+        ui.setup_ui(self.__main_menu)
+        # self.__main_menu.hide()
+        # self.__boggle_room_selection.show()
 
     def __start_solo_game(self):
-        from Client.views.Boggle_Game import UiRoomGame
+        from Client.views.InGameUi import InGameUi
         self.__solo_game = QtWidgets.QDialog()
-        ui = UiRoomGame()
+        ui = InGameUi()
         ui.setup_ui(self.__solo_game)
         self.__main_menu.hide()
         self.__solo_game.show()

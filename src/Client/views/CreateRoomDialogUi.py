@@ -10,7 +10,7 @@ from PyQt5 import QtCore, QtWidgets
 
 
 # noinspection PyArgumentList
-class UiDialog(object):
+class CreateRoomDialogUi(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(314, 140)
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
-    ui = UiDialog()
+    ui = CreateRoomDialogUi()
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())

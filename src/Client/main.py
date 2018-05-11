@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets
 
 from Client.util.resource_rc import qInitResources
-from Client.views.MainMenu import UiMainMenu
+from Client.views.MainMenuUi import MainMenuUi
 
 
 # noinspection PyArgumentList
@@ -11,7 +11,7 @@ def main():
     qInitResources()
     app = QtWidgets.QApplication(sys.argv)
     main_menu = QtWidgets.QMainWindow()
-    ui = UiMainMenu()
+    ui = MainMenuUi()
     ui.setup_ui(main_menu)
     main_menu.show()
     sys.exit(app.exec_())
