@@ -92,8 +92,13 @@ class MainMenuUi(object):
 
     def __start_solo_game(self):
         from Client.views.InGameUi import InGameUi
-        self.__solo_game = QtWidgets.QDialog()
+        from Client.views.widgets.InGameWindow import InGameWindow
+        if self.__solo_game:
+            self.__solo_game.hide()
+
+        # self.__solo_game = QtWidgets.QDialog(self.__main_menu)
+        self.__solo_game = InGameWindow(self.__main_menu)
         ui = InGameUi()
         ui.setup_ui(self.__solo_game)
-        self.__main_menu.hide()
+        # self.__main_menu.hide()
         self.__solo_game.show()

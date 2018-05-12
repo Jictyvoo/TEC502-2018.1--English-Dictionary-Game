@@ -5,6 +5,7 @@ from PyQt5 import QtCore, QtWidgets
 class InGameUi(object):
 
     def __init__(self):
+        self.__room_window = None
         self.__test_word_button = None
         self.verticalLayout_3 = None
         self.verticalLayout_2 = None
@@ -27,12 +28,12 @@ class InGameUi(object):
         self.listWidget = None
         self.userInput_horizontalLayout = None
         self.guessWord_label = None
-        self.word_button = None
         self._translate = None
         self.__timer = None
 
         self.__seconds_remaining = 180
         self.__buttons_pressed = []
+        self.__character_button = None
         from Client.util.DictionaryManipulator import DictionaryManipulator
         self.__dictionary_manipulator = DictionaryManipulator()
         self.__dice_manipulator = None
@@ -40,10 +41,16 @@ class InGameUi(object):
 
     def __call_game_over_dialog(self, message="The Game has Over"):
         from Client.views.GameOverUi import GameOverUi
-        self.__dialog_window = QtWidgets.QDialog()
+        self.__dialog_window = QtWidgets.QDialog(self.__room_window)
         ui = GameOverUi(message)
         ui.setup_ui(self.__dialog_window)
         self.__dialog_window.show()
+
+    def _get_button(self, button_text):
+        for button in self.__character_button:
+            if button.text() == button_text and button.isEnabled():
+                return button
+        return None
 
     def __button_function(self, button):
         def lambda_function():
@@ -54,25 +61,25 @@ class InGameUi(object):
         button.clicked.connect(lambda_function)
 
     def __generate_buttons(self, room__game):
-        word_button = []
+        character_button = []
 
         count = 0
         for line in range(0, 4):
             for column in range(0, 4):
-                current_word_button = QtWidgets.QPushButton(room__game)
+                current_character_button = QtWidgets.QPushButton(room__game)
                 size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
                 size_policy.setHorizontalStretch(0)
                 size_policy.setVerticalStretch(0)
-                size_policy.setHeightForWidth(current_word_button.sizePolicy().hasHeightForWidth())
-                current_word_button.setSizePolicy(size_policy)
-                current_word_button.setObjectName("word_%d" % count)
-                self.gridLayout.addWidget(current_word_button, line, column, 1, 1)
+                size_policy.setHeightForWidth(current_character_button.sizePolicy().hasHeightForWidth())
+                current_character_button.setSizePolicy(size_policy)
+                current_character_button.setObjectName("word_%d" % count)
+                self.gridLayout.addWidget(current_character_button, line, column, 1, 1)
 
-                self.__button_function(current_word_button)
+                self.__button_function(current_character_button)
 
                 count += 1
-                word_button.append(current_word_button)
-        self.word_button = tuple(word_button)
+                character_button.append(current_character_button)
+        self.__character_button = tuple(character_button)
 
     def __players_in_room(self, room_name):
         self.totalPlayers_verticalLayout = QtWidgets.QVBoxLayout()
@@ -109,7 +116,7 @@ class InGameUi(object):
     def __define_characters(self):
         count = 0
         for character in self.__dice_manipulator.randomize():
-            self.word_button[count].setText(self._translate("room_name", character))
+            self.__character_button[count].setText(self._translate("room_name", character))
             count += 1
 
     def __add_found_words(self, item_text):
@@ -144,7 +151,7 @@ class InGameUi(object):
         def callback_tick():
             if self.__seconds_remaining <= 0:
                 self.__timer.stop()
-                for button in self.word_button:
+                for button in self.__character_button:
                     button.setEnabled(False)
                 self.__test_word_button.setEnabled(False)
                 self.__call_game_over_dialog(self.__calculate_final_score())
@@ -158,6 +165,7 @@ class InGameUi(object):
         self.__timer.start(1000)
 
     def setup_ui(self, room_name, active=False):
+        self.__room_window = room_name
         room_name.setObjectName("room_name")
         room_name.resize(685, 390)
 
@@ -245,6 +253,7 @@ class InGameUi(object):
         self.verticalLayout_1.addLayout(self.userInput_horizontalLayout)
         self.verticalLayout_3.addLayout(self.verticalLayout_1)
 
+        self.__room_window.initialize(self._get_button, self.__buttons_pressed, self.plainTextEdit)
         self.__re_translate_ui(room_name)
         self.listWidget.setCurrentRow(-1)
         QtCore.QMetaObject.connectSlotsByName(room_name)
