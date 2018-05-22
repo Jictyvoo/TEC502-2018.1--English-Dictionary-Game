@@ -1,91 +1,84 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'Create_Room_Dialog.ui'
-#
-# Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtWidgets
 
 
 # noinspection PyArgumentList
 class CreateRoomDialogUi(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(314, 140)
-        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.formLayout = QtWidgets.QFormLayout()
-        self.formLayout.setObjectName("formLayout")
-        self.totalPlayers_label = QtWidgets.QLabel(Dialog)
-        self.totalPlayers_label.setObjectName("totalPlayers_label")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.totalPlayers_label)
-        self.totalPlayersInput = QtWidgets.QPlainTextEdit(Dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.totalPlayersInput.sizePolicy().hasHeightForWidth())
-        self.totalPlayersInput.setSizePolicy(sizePolicy)
-        self.totalPlayersInput.setMinimumSize(QtCore.QSize(0, 20))
-        self.totalPlayersInput.setMaximumSize(QtCore.QSize(16777215, 25))
-        self.totalPlayersInput.setCenterOnScroll(True)
-        self.totalPlayersInput.setObjectName("totalPlayersInput")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.totalPlayersInput)
-        self.roomName_label = QtWidgets.QLabel(Dialog)
-        self.roomName_label.setObjectName("roomName_label")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.roomName_label)
-        self.roomNameInput = QtWidgets.QPlainTextEdit(Dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.roomNameInput.sizePolicy().hasHeightForWidth())
-        self.roomNameInput.setSizePolicy(sizePolicy)
-        self.roomNameInput.setMinimumSize(QtCore.QSize(0, 20))
-        self.roomNameInput.setMaximumSize(QtCore.QSize(16777215, 25))
-        self.roomNameInput.setCenterOnScroll(True)
-        self.roomNameInput.setObjectName("roomNameInput")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.roomNameInput)
-        self.roomPassword_label = QtWidgets.QLabel(Dialog)
-        self.roomPassword_label.setObjectName("roomPassword_label")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.roomPassword_label)
-        self.passwordInput = QtWidgets.QPlainTextEdit(Dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.passwordInput.sizePolicy().hasHeightForWidth())
-        self.passwordInput.setSizePolicy(sizePolicy)
-        self.passwordInput.setMinimumSize(QtCore.QSize(0, 20))
-        self.passwordInput.setMaximumSize(QtCore.QSize(16777215, 25))
-        self.passwordInput.setCenterOnScroll(True)
-        self.passwordInput.setObjectName("passwordInput")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.passwordInput)
-        self.verticalLayout.addLayout(self.formLayout)
-        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
-        self.buttonBox.setObjectName("buttonBox")
-        self.verticalLayout.addWidget(self.buttonBox)
 
-        self.retranslateUi(Dialog)
-        self.buttonBox.accepted.connect(Dialog.accept)
-        self.buttonBox.rejected.connect(Dialog.reject)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+    def __init__(self):
+        self.__vertical_layout = None
+        self.__form_layout = None
+        self.__total_players_label = None
+        self.__total_players_input = None
+        self.__room_name_label = None
+        self.__room_name_input = None
+        self.__room_password_label = None
+        self.__room_password_input = None
+        self.__button_box = None
 
-    def retranslateUi(self, Dialog):
+    def setup_ui(self, dialog):
+        dialog.setObjectName("dialog")
+        dialog.resize(314, 140)
+        self.__vertical_layout = QtWidgets.QVBoxLayout(dialog)
+        self.__vertical_layout.setObjectName("verticalLayout")
+        self.__form_layout = QtWidgets.QFormLayout()
+        self.__form_layout.setObjectName("formLayout")
+        self.__total_players_label = QtWidgets.QLabel(dialog)
+        self.__total_players_label.setObjectName("totalPlayers_label")
+        self.__form_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.__total_players_label)
+        self.__total_players_input = QtWidgets.QPlainTextEdit(dialog)
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        size_policy.setHorizontalStretch(0)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(self.__total_players_input.sizePolicy().hasHeightForWidth())
+        self.__total_players_input.setSizePolicy(size_policy)
+        self.__total_players_input.setMinimumSize(QtCore.QSize(0, 20))
+        self.__total_players_input.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.__total_players_input.setCenterOnScroll(True)
+        self.__total_players_input.setObjectName("totalPlayersInput")
+        self.__form_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.__total_players_input)
+        self.__room_name_label = QtWidgets.QLabel(dialog)
+        self.__room_name_label.setObjectName("roomName_label")
+        self.__form_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.__room_name_label)
+        self.__room_name_input = QtWidgets.QPlainTextEdit(dialog)
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        size_policy.setHorizontalStretch(0)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(self.__room_name_input.sizePolicy().hasHeightForWidth())
+        self.__room_name_input.setSizePolicy(size_policy)
+        self.__room_name_input.setMinimumSize(QtCore.QSize(0, 20))
+        self.__room_name_input.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.__room_name_input.setCenterOnScroll(True)
+        self.__room_name_input.setObjectName("roomNameInput")
+        self.__form_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.__room_name_input)
+        self.__room_password_label = QtWidgets.QLabel(dialog)
+        self.__room_password_label.setObjectName("roomPassword_label")
+        self.__form_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.__room_password_label)
+        self.__room_password_input = QtWidgets.QPlainTextEdit(dialog)
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        size_policy.setHorizontalStretch(0)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(self.__room_password_input.sizePolicy().hasHeightForWidth())
+        self.__room_password_input.setSizePolicy(size_policy)
+        self.__room_password_input.setMinimumSize(QtCore.QSize(0, 20))
+        self.__room_password_input.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.__room_password_input.setCenterOnScroll(True)
+        self.__room_password_input.setObjectName("passwordInput")
+        self.__form_layout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.__room_password_input)
+        self.__vertical_layout.addLayout(self.__form_layout)
+        self.__button_box = QtWidgets.QDialogButtonBox(dialog)
+        self.__button_box.setOrientation(QtCore.Qt.Horizontal)
+        self.__button_box.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
+        self.__button_box.setObjectName("buttonBox")
+        self.__vertical_layout.addWidget(self.__button_box)
+
+        self.__re_translate_ui(dialog)
+        self.__button_box.accepted.connect(dialog.accept)
+        self.__button_box.rejected.connect(dialog.reject)
+        QtCore.QMetaObject.connectSlotsByName(dialog)
+
+    def __re_translate_ui(self, dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.totalPlayers_label.setText(_translate("Dialog", "Total Players:"))
-        self.roomName_label.setText(_translate("Dialog", "Room Name:"))
-        self.roomPassword_label.setText(_translate("Dialog", "Room Password:"))
-
-
-if __name__ == "__main__":
-    import sys
-
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = CreateRoomDialogUi()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
+        dialog.setWindowTitle(_translate("dialog", "Room Configuration"))
+        self.__total_players_label.setText(_translate("dialog", "Total Players:"))
+        self.__room_name_label.setText(_translate("dialog", "Room Name:"))
+        self.__room_password_label.setText(_translate("dialog", "Room Password:"))

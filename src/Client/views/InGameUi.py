@@ -157,7 +157,7 @@ class InGameUi(object):
                 self.__call_game_over_dialog(self.__calculate_final_score())
             else:
                 self.__seconds_remaining -= 1
-                self.progressBar.setValue(180 - self.__seconds_remaining)
+                self.progressBar.setValue(self.__seconds_remaining)
                 self.progressBar.setFormat(self._translate("room_name", "%.0f seconds" % self.__seconds_remaining))
 
         self.__timer = QtCore.QTimer()
@@ -183,7 +183,7 @@ class InGameUi(object):
         self.progressBar = QtWidgets.QProgressBar(room_name)
         self.progressBar.setMaximum(180)
         self.progressBar.setMinimum(0)
-        self.progressBar.setProperty("value", 0)
+        self.progressBar.setProperty("business", 0)
         self.progressBar.setObjectName("progressBar")
         self.time_horizontalLayout.addWidget(self.progressBar)
         self.verticalLayout_1.addLayout(self.time_horizontalLayout)
