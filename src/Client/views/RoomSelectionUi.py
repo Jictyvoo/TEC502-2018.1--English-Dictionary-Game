@@ -2,6 +2,9 @@ from PyQt5 import QtCore, QtWidgets
 
 
 # noinspection PyArgumentList
+from Client.controllers.SocketController import SocketController
+
+
 class RoomSelectionUi(object):
 
     def __init__(self):
@@ -27,6 +30,7 @@ class RoomSelectionUi(object):
 
         self.__room_selection_window = None
         self.__dialog = None
+        self.__socketController = SocketController()
 
     def setup_ui(self, boggle_room_selection):
         self.__room_selection_window = boggle_room_selection
@@ -96,6 +100,9 @@ class RoomSelectionUi(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.__refreshButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.__refreshButton.setObjectName("__refreshButton")
+
+        self.__refreshButton.clicked.connect(lambda: self.__refresh_rooms())
+
         self.horizontalLayout_3.addWidget(self.__refreshButton)
         spacer_item_2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacer_item_2)
@@ -130,30 +137,35 @@ class RoomSelectionUi(object):
         self.__re_translate_ui(boggle_room_selection)
         QtCore.QMetaObject.connectSlotsByName(boggle_room_selection)
 
+    def __refresh_rooms(self):
+        rooms = self.__socketController.get_rooms()
+        self.listWidget.clear()
+        for room in rooms:
+            self.add_item(room)
+
     def __select_item(self, item):
         print("Here comes a method that call connection functions", item)
 
-    def add_item(self, _translate):
+    def add_item(self, room_data):
         item = QtWidgets.QListWidgetItem()
-        item.setText(_translate("boggle_room_selection", "Room Name: 4/5 Players"))
+        item.setText(self._translate("boggle_room_selection", "%s Players" % room_data))
         self.listWidget.addItem(item)
 
     def __create_room_dialog(self):
         from Client.views.CreateRoomDialogUi import CreateRoomDialogUi
         self.__dialog = QtWidgets.QDialog(self.__room_selection_window)
-        ui = CreateRoomDialogUi()
+        ui = CreateRoomDialogUi(self.__socketController)
         ui.setup_ui(self.__dialog)
         self.__dialog.show()
 
     def __re_translate_ui(self, boggle_room_selection):
-        _translate = QtCore.QCoreApplication.translate
-        boggle_room_selection.setWindowTitle(_translate("boggle_room_selection", "Boggle Room Selection"))
+        self._translate = QtCore.QCoreApplication.translate
+        boggle_room_selection.setWindowTitle(self._translate("boggle_room_selection", "Boggle Room Selection"))
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
         self.listWidget.setSortingEnabled(__sortingEnabled)
-        self.add_item(_translate)
-        self.label.setText(_translate("boggle_room_selection", "Username:"))
-        self.__configButton.setText(_translate("boggle_room_selection", "Configuration"))
-        self.__refreshButton.setText(_translate("boggle_room_selection", "Refresh"))
-        self.__joinRoomButton.setText(_translate("boggle_room_selection", "Join Room"))
-        self.__createRoomButton.setText(_translate("boggle_room_selection", "Create new Room"))
+        self.label.setText(self._translate("boggle_room_selection", "Username:"))
+        self.__configButton.setText(self._translate("boggle_room_selection", "Configuration"))
+        self.__refreshButton.setText(self._translate("boggle_room_selection", "Refresh"))
+        self.__joinRoomButton.setText(self._translate("boggle_room_selection", "Join Room"))
+        self.__createRoomButton.setText(self._translate("boggle_room_selection", "Create new Room"))

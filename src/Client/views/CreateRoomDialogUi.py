@@ -4,7 +4,7 @@ from PyQt5 import QtCore, QtWidgets
 # noinspection PyArgumentList
 class CreateRoomDialogUi(object):
 
-    def __init__(self):
+    def __init__(self, socket_controller):
         self.__vertical_layout = None
         self.__form_layout = None
         self.__total_players_label = None
@@ -14,8 +14,11 @@ class CreateRoomDialogUi(object):
         self.__room_password_label = None
         self.__room_password_input = None
         self.__button_box = None
+        self.__dialog = None
+        self.__socketController = socket_controller
 
     def setup_ui(self, dialog):
+        self.__dialog = dialog
         dialog.setObjectName("dialog")
         dialog.resize(314, 140)
         self.__vertical_layout = QtWidgets.QVBoxLayout(dialog)
@@ -72,9 +75,20 @@ class CreateRoomDialogUi(object):
         self.__vertical_layout.addWidget(self.__button_box)
 
         self.__re_translate_ui(dialog)
-        self.__button_box.accepted.connect(dialog.accept)
+        self.__button_box.accepted.connect(lambda: self.__accept_button())
         self.__button_box.rejected.connect(dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(dialog)
+
+    def __accept_button(self):
+        try:
+            room_name = self.__room_name_input.toPlainText()
+            password = self.__room_password_input.toPlainText()
+            total_players = int(self.__total_players_input.toPlainText())
+            self.__socketController.create_room(room_name, password, total_players)
+        except ValueError as error:
+            print(error)
+        finally:
+            self.__dialog.accept()
 
     def __re_translate_ui(self, dialog):
         _translate = QtCore.QCoreApplication.translate

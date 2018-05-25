@@ -1,6 +1,5 @@
-import socket
-import threading
 import json.decoder as decoder_json
+import socket
 
 from Server.models.business.ConnectedClientThread import ConnectedClientThread
 
@@ -18,14 +17,15 @@ class ListenThread:
         # listen() puts the socket into server mode
         self.__socket.listen(1000)
         from Server.controllers.RoomsController import RoomsController
-        self.__room_controller = RoomsController()
-        self.__remove_room_thread = threading.Thread(target=self.__room_controller.remove_room)
+        self.__room_controller_thread = RoomsController()
+        # self.__remove_room_thread = threading.Thread(target=self.__room_controller.remove_room)
 
     def main_execution(self):
-        self.__remove_room_thread.start()
+        self.__room_controller_thread.start()
         while True:
             # Wait for a connection
             print("Listening Clients")
             connection, client_address = self.__socket.accept()
-            connected_client = ConnectedClientThread(connection, client_address)
+            print("Connection Address", client_address)
+            connected_client = ConnectedClientThread(connection, client_address, self.__room_controller_thread)
             connected_client.start()

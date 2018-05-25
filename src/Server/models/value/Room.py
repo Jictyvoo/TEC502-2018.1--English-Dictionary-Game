@@ -1,10 +1,12 @@
 class Room:
-    def __init__(self, multicast_ip=None, name="Pseudo-Room", coordinator_player_address=None, limit_players=2):
+    def __init__(self, multicast_ip=None, name="Pseudo-Room", coordinator_player_address=None, limit_players=2,
+                 password=""):
         self.__room_ip = multicast_ip
         self.__name = name
         self.__coordinator_player_address = coordinator_player_address
         self.__limit_players = limit_players
         self.__current_players = {coordinator_player_address: True}
+        self.__password = password
 
     def get_room_ip(self):
         return self.__room_ip
