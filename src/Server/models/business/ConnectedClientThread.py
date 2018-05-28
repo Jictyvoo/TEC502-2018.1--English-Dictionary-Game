@@ -15,5 +15,9 @@ class ConnectedClientThread(threading.Thread):
             for room in rooms:
                 self.__clientConnection.send(bytes(room, 'utf-8'))
         elif message == "creating_room":
-            print(self.__clientConnection.recv(120).decode('utf-8'))
+            room_status = self.__clientConnection.recv(120).decode('utf-8').split("|_-_|")
+            client_address = "%s:%d" % self.__clientAddress
+            command = "new_room|_-_|" + client_address + "|_-_|" + room_status[0] + "|_-_|" + room_status[1] + "|_-_|" + room_status[2]
+            self.__room_controller_thread.execute_command(command)
+
         self.__clientConnection.close()

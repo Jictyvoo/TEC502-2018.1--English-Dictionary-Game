@@ -1,3 +1,4 @@
+# noinspection PyUnresolvedReferences
 from PyQt5 import QtCore, QtWidgets
 
 from Client.util.resource_rc import qInitResources

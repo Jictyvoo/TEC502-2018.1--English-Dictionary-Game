@@ -35,28 +35,35 @@ class SocketController:
         self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def get_rooms(self):
-        self.__socket.connect(self.__server_address)
-        message = bytes("request_rooms", 'utf-8')
-        self.__socket.send(message)
+        try:
+            self.__socket.connect(self.__server_address)
+            message = bytes("request_rooms", 'utf-8')
+            self.__socket.send(message)
 
-        existent_rooms = []
-        while True:
-            message = self.__socket.recv(65)
-            if message:
-                existent_rooms.append(message.decode('utf-8').split("|_|"))
-            else:
-                break
-        self.__reset_socket()
-        return existent_rooms
+            existent_rooms = []
+            while True:
+                message = self.__socket.recv(65)
+                if message:
+                    existent_rooms.append(message.decode('utf-8').split("|_|"))
+                else:
+                    break
+            self.__reset_socket()
+            return existent_rooms
+        except socket.error:
+            print("Error")
+            return []
 
     def create_room(self, room_name, password, amount_of_players):
-        self.__socket.connect(self.__server_address)
-        message = bytes("creating_room", 'utf-8')
-        self.__socket.send(message)
-        sent_string = room_name + "|_-_|" + str(amount_of_players) + "|_-_|" + password
-        message = bytes(sent_string, 'utf-8')
-        self.__socket.send(message)
-        self.__reset_socket()
+        try:
+            self.__socket.connect(self.__server_address)
+            message = bytes("creating_room", 'utf-8')
+            self.__socket.send(message)
+            sent_string = room_name + "|_-_|" + str(amount_of_players) + "|_-_|" + password
+            message = bytes(sent_string, 'utf-8')
+            self.__socket.send(message)
+            self.__reset_socket()
+        except socket.error:
+            print("Error while creating room")
 
     def run(self):
         # Receive/respond loop

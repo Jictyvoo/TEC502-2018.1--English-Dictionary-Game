@@ -13,17 +13,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/DictionaryGame$main_server.coverage" NAME="main_server Coverage Results" MODIFIED="1527232649850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DictionaryGame$main_client.coverage" NAME="main_client Coverage Results" MODIFIED="1527232653042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Client" />
+    <SUITE FILE_PATH="coverage/DictionaryGame$main_server.coverage" NAME="main_server Coverage Results" MODIFIED="1527488709005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DictionaryGame$main_client.coverage" NAME="main_client Coverage Results" MODIFIED="1527488710326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Client" />
     <SUITE FILE_PATH="coverage/DictionaryGame$main.coverage" NAME="main_client Coverage Results" MODIFIED="1527018152809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Client" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SocketController.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SocketController.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/controllers/SocketController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1224">
-              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="153">
+              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
               <folding>
                 <element signature="e#58#71#0" expanded="true" />
               </folding>
@@ -34,8 +34,8 @@
       <file leaf-file-name="ConnectedClientThread.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/models/business/ConnectedClientThread.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="391">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -43,10 +43,31 @@
       <file leaf-file-name="RoomsController.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/controllers/RoomsController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="48" column="44" lean-forward="true" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
+            <state relative-caret-position="364">
+              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WaitingPlayersUi.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/views/WaitingPlayersUi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="479">
+              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoomSelectionUi.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Client/views/RoomSelectionUi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2343">
+              <caret column="37" selection-start-column="37" selection-end-column="37" />
+              <folding>
+                <element signature="e#38#73#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -55,20 +76,8 @@
       <file leaf-file-name="Room.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/models/value/Room.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoomSelectionUi.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/views/RoomSelectionUi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="479">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -76,8 +85,8 @@
       <file leaf-file-name="ListenThread.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/models/business/ListenThread.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="476">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -116,6 +125,9 @@
       <find>multicast_group</find>
       <find>sock</find>
       <find>_translate</find>
+      <find>Ui_WaitingConnections</find>
+      <find>horizontalLayout</find>
+      <find>horizontalLayout_2</find>
     </findStrings>
     <replaceStrings>
       <replace>'</replace>
@@ -124,6 +136,7 @@
       <replace>self.__multicast_group</replace>
       <replace>self.__socket</replace>
       <replace>self._translate</replace>
+      <replace>WaitingPlayersUi</replace>
     </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -145,22 +158,24 @@
         <option value="$PROJECT_DIR$/Client/views/RoomSelection.py" />
         <option value="$PROJECT_DIR$/Client/views/Create_Room_Dialog.py" />
         <option value="$PROJECT_DIR$/Client/views/Game_Over_Dialog.py" />
-        <option value="$PROJECT_DIR$/Client/views/MainMenuUi.py" />
         <option value="$PROJECT_DIR$/Client/views/InGameWindow.py" />
         <option value="$PROJECT_DIR$/Client/views/widgets/InGameWindow.py" />
         <option value="$PROJECT_DIR$/Server/models/ListenThread.py" />
         <option value="$PROJECT_DIR$/Server/models/ConnectedClientThread.py" />
         <option value="$PROJECT_DIR$/Server/util/MulticastAddressGenerator.py" />
-        <option value="$PROJECT_DIR$/Client/views/InGameUi.py" />
         <option value="$PROJECT_DIR$/main_server.py" />
         <option value="$PROJECT_DIR$/config.conf" />
         <option value="$PROJECT_DIR$/Server/models/business/ListenThread.py" />
-        <option value="$PROJECT_DIR$/Client/views/RoomSelectionUi.py" />
-        <option value="$PROJECT_DIR$/Client/views/CreateRoomDialogUi.py" />
+        <option value="$PROJECT_DIR$/Client/controllers/SocketController.py" />
+        <option value="$PROJECT_DIR$/Server/models/business/ConnectedClientThread.py" />
         <option value="$PROJECT_DIR$/Server/models/value/Room.py" />
         <option value="$PROJECT_DIR$/Server/controllers/RoomsController.py" />
-        <option value="$PROJECT_DIR$/Server/models/business/ConnectedClientThread.py" />
-        <option value="$PROJECT_DIR$/Client/controllers/SocketController.py" />
+        <option value="$PROJECT_DIR$/Client/views/RoomSelectionUi.py" />
+        <option value="$PROJECT_DIR$/Client/views/WaitingPlayersUi.py" />
+        <option value="$PROJECT_DIR$/Client/views/CreateRoomDialogUi.py" />
+        <option value="$PROJECT_DIR$/Client/views/GameOverUi.py" />
+        <option value="$PROJECT_DIR$/Client/views/InGameUi.py" />
+        <option value="$PROJECT_DIR$/Client/views/MainMenuUi.py" />
       </list>
     </option>
   </component>
@@ -359,15 +374,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5021962" side_tool="true" weight="0.19077902" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50292826" side_tool="true" weight="0.18282989" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="13" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4978038" weight="0.18282989" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49707174" weight="0.18282989" />
       <window_info anchor="bottom" id="Terminal" order="12" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2489019" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2489019" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="bottom" id="Find" order="2" sideWeight="0.49926794" weight="0.32750398" />
@@ -392,17 +408,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Client/views/RoomSelectionUi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2091">
-          <caret line="123" column="51" lean-forward="true" selection-start-line="123" selection-start-column="51" selection-end-line="123" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/views/MainMenuUi.py" />
     <entry file="file://$PROJECT_DIR$/Client/util/DictionaryManipulator.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -565,7 +574,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/views/GameOverUi.py" />
     <entry file="file://$PROJECT_DIR$/Client/util/DiceManipulator.py" />
     <entry file="file://$PROJECT_DIR$/Client/main.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -584,13 +592,6 @@
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/threading.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-667" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/views/MainMenuUi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/views/widgets/InGameWindow.py">
@@ -635,24 +636,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/views/InGameUi.py">
+    <entry file="file://$PROJECT_DIR$/Server/models/business/ListenThread.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="131" column="56" lean-forward="true" selection-start-line="131" selection-start-column="56" selection-end-line="131" selection-end-column="56" />
+        <state relative-caret-position="476">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/controllers/SocketController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="e#58#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/models/business/ConnectedClientThread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/controllers/RoomsController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/views/CreateRoomDialogUi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/views/RoomSelectionUi.py">
+    <entry file="file://$PROJECT_DIR$/Client/views/GameOverUi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/views/InGameUi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/views/MainMenuUi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -661,44 +706,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/models/value/Room.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="479">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/controllers/RoomsController.py">
+    <entry file="file://$PROJECT_DIR$/Client/views/WaitingPlayersUi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="48" column="44" lean-forward="true" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
+        <state relative-caret-position="479">
+          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/views/RoomSelectionUi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2343">
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/models/business/ListenThread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/models/business/ConnectedClientThread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/controllers/SocketController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
-          <folding>
-            <element signature="e#58#71#0" expanded="true" />
+            <element signature="e#38#73#0" expanded="true" />
           </folding>
         </state>
       </provider>

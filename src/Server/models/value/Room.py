@@ -35,7 +35,7 @@ class Room:
 
     def get_amount_players(self):
         count = 0
-        for key, value in self.__current_players:
-            if value:
+        for key in self.__current_players.keys():
+            if self.__current_players[key]:
                 count += 1
         return count
