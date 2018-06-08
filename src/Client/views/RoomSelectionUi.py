@@ -145,17 +145,27 @@ class RoomSelectionUi(object):
             self.add_item(room)
 
     def __select_item(self, item):
-        print("Here comes a method that call connection functions", item)
+        room_name = item.text().split("'")[1].split(":")[0]
+        total_players = int(item.text().split("'")[1].split(": ")[1].split("/")[0])
+        username = str(self.plainTextEdit.toPlainText())
+        if len(username) > 1:
+            if self.__socketController.join_room(room_name, "", username):
+                from Client.views.WaitingPlayersUi import WaitingPlayersUi
+                self.__dialog = QtWidgets.QDialog()
+                ui = WaitingPlayersUi(self.__socketController, total_players, room_name, username)
+                ui.setup_ui(self.__dialog)
+                self.__dialog.show()
 
     def add_item(self, room_data):
         item = QtWidgets.QListWidgetItem()
-        item.setText(self._translate("boggle_room_selection", "%s Players" % room_data))
+        item.setText(self._translate("boggle_room_selection", "%s" % room_data))
         self.listWidget.addItem(item)
 
     def __create_room_dialog(self):
+        username = self.plainTextEdit.toPlainText()
         from Client.views.CreateRoomDialogUi import CreateRoomDialogUi
         self.__dialog = QtWidgets.QDialog(self.__room_selection_window)
-        ui = CreateRoomDialogUi(self.__socketController)
+        ui = CreateRoomDialogUi(self.__socketController, str(username))
         ui.setup_ui(self.__dialog)
         self.__dialog.show()
 

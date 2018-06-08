@@ -5,7 +5,7 @@ from PyQt5 import QtCore, QtWidgets
 # noinspection PyArgumentList
 class CreateRoomDialogUi(object):
 
-    def __init__(self, socket_controller):
+    def __init__(self, socket_controller, player_name="HaveNoName"):
         self.__vertical_layout = None
         self.__form_layout = None
         self.__total_players_label = None
@@ -16,7 +16,9 @@ class CreateRoomDialogUi(object):
         self.__room_password_input = None
         self.__button_box = None
         self.__dialog = None
+        self.__dialog_waiting = None
         self.__socketController = socket_controller
+        self.__playerName = player_name
 
     def setup_ui(self, dialog):
         self.__dialog = dialog
@@ -81,15 +83,26 @@ class CreateRoomDialogUi(object):
         QtCore.QMetaObject.connectSlotsByName(dialog)
 
     def __accept_button(self):
+        created = False
+        total_players = 2
+        room_name = ""
         try:
             room_name = self.__room_name_input.toPlainText()
             password = self.__room_password_input.toPlainText()
             total_players = int(self.__total_players_input.toPlainText())
-            self.__socketController.create_room(room_name, password, total_players)
+            created = self.__socketController.create_room(room_name, password, total_players, self.__playerName)
         except ValueError as error:
             print(error)
         finally:
-            self.__dialog.accept()
+            if created:
+                from Client.views.WaitingPlayersUi import WaitingPlayersUi
+                self.__dialog_waiting = QtWidgets.QDialog()
+                ui = WaitingPlayersUi(self.__socketController, total_players, room_name, self.__playerName)
+                ui.setup_ui(self.__dialog_waiting)
+                self.__dialog_waiting.show()
+                self.__dialog.accept()
+            else:
+                self.__dialog.accept()
 
     def __re_translate_ui(self, dialog):
         _translate = QtCore.QCoreApplication.translate

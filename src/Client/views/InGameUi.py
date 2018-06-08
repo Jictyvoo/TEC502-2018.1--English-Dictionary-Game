@@ -38,6 +38,7 @@ class InGameUi(object):
         from Client.util.DictionaryManipulator import DictionaryManipulator
         self.__dictionary_manipulator = DictionaryManipulator()
         self.__dice_manipulator = None
+        self.__dices = None
         self.__dialog_window = None
 
     def __call_game_over_dialog(self, message="The Game has Over"):
@@ -116,7 +117,8 @@ class InGameUi(object):
 
     def __define_characters(self):
         count = 0
-        for character in self.__dice_manipulator.randomize():
+        print(self.__dices)
+        for character in self.__dices:
             self.__character_button[count].setText(self._translate("room_name", character))
             count += 1
 
@@ -165,7 +167,9 @@ class InGameUi(object):
         self.__timer.timeout.connect(callback_tick)
         self.__timer.start(1000)
 
-    def setup_ui(self, room_name, active=False):
+    def setup_ui(self, room_name, active=False, received_dices=None):
+        if received_dices is None:
+            received_dices = []
         self.__room_window = room_name
         room_name.setObjectName("room_name")
         room_name.resize(685, 390)
@@ -202,10 +206,13 @@ class InGameUi(object):
 
         if active:
             self.__players_in_room(room_name)
+            self.__dices = received_dices
         else:
             from Client.util.DiceManipulator import DiceManipulator
             self.__dice_manipulator = DiceManipulator()
-            self.__define_characters()
+            self.__dices = self.__dice_manipulator.randomize()
+
+        self.__define_characters()
 
         self.words_horizontalLayout.addLayout(self.gridLayout)
         self.scrollArea = QtWidgets.QScrollArea(room_name)

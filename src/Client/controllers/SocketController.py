@@ -53,17 +53,66 @@ class SocketController:
             print("Error")
             return []
 
-    def create_room(self, room_name, password, amount_of_players):
+    def get_players_names(self, room_name):
+        try:
+            self.__socket.connect(self.__server_address)
+            self.__socket.send(bytes("players_names", 'utf-8'))
+            self.__socket.send(bytes(room_name, 'utf-8'))
+            players_names = self.__socket.recv(60)
+            print(room_name)
+            self.__reset_socket()
+            try:
+                return players_names
+            except ValueError:
+                return None
+        except socket.error:
+            return None
+
+    def start_game(self, room_name):
+        try:
+            self.__socket.connect(self.__server_address)
+            self.__socket.send(bytes("start__gaming", 'utf-8'))
+            self.__socket.send(bytes(room_name, 'utf-8'))
+            dices = self.__socket.recv(60).decode('utf-8')
+            self.__reset_socket()
+            try:
+                return dices.split("|_|")
+            except ValueError:
+                return None
+        except socket.error:
+            return None
+
+    def create_room(self, room_name, password, amount_of_players, coordinator_name):
         try:
             self.__socket.connect(self.__server_address)
             message = bytes("creating_room", 'utf-8')
             self.__socket.send(message)
-            sent_string = room_name + "|_-_|" + str(amount_of_players) + "|_-_|" + password
+            sent_string = room_name + "|_-_|" + str(amount_of_players) + "|_-_|" + password + "|_-_|" + coordinator_name
             message = bytes(sent_string, 'utf-8')
             self.__socket.send(message)
             self.__reset_socket()
+            return True
         except socket.error:
             print("Error while creating room")
+            return False
+
+    def join_room(self, room_name, password, player_name):
+        try:
+            self.__socket.connect(self.__server_address)
+            message = bytes("joining__room", 'utf-8')
+            self.__socket.send(message)
+            sent_string = room_name + "|_-_|" + password + "|_-_|" + player_name
+            message = bytes(sent_string, 'utf-8')
+            self.__socket.send(message)
+            if self.__socket.recv(30).decode('utf-8') == "Successful":
+                added = True
+            else:
+                added = False
+            self.__reset_socket()
+            return added
+        except socket.error:
+            print("Error while joining room")
+            return False
 
     def run(self):
         # Receive/respond loop
