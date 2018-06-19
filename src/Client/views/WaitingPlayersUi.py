@@ -22,6 +22,7 @@ class WaitingPlayersUi(object):
         self.__playerName = player_name
         self.__waiting_connections = None
         self.__game_window = None
+        self.__player_names = None
 
     def setup_ui(self, waiting_connections):
         self.__waiting_connections = waiting_connections
@@ -73,7 +74,7 @@ class WaitingPlayersUi(object):
         # self.__solo_game = QtWidgets.QDialog(self.__main_menu)
         self.__game_window = InGameWindow()
         ui = InGameUi()
-        ui.setup_ui(self.__game_window, True, dices)
+        ui.setup_ui(self.__game_window, True, dices, self.__player_names)
         # self.__main_menu.hide()
         self.__game_window.show()
         self.__waiting_connections.accept()
@@ -96,6 +97,7 @@ class WaitingPlayersUi(object):
         self.progressBar.setValue(self.__currentPlayers)
         self.progressBar.setFormat(self._translate("waiting_connections", "%.0f players" % self.__currentPlayers))
         self.__add_players(players_names.split("|_|"))
+        self.__player_names = players_names.split("|_|")
 
     def __add_players(self, names_list):
         self.listWidget.clear()

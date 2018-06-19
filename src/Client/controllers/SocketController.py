@@ -7,7 +7,7 @@ import json.decoder as decoder_json
 class SocketController:
     def __init__(self):
         self.__multicast_group = '224.3.29.71'
-        with open("../config.conf", 'r') as content_file:
+        with open("./config.conf", 'r') as content_file:
             decoder = decoder_json.JSONDecoder()
             decoded = decoder.decode(content_file.read())
             self.__host = decoded['host']
@@ -74,6 +74,7 @@ class SocketController:
             self.__socket.send(bytes("start__gaming", 'utf-8'))
             self.__socket.send(bytes(room_name, 'utf-8'))
             dices = self.__socket.recv(60).decode('utf-8')
+            players_names = self.__socket.recv(60)
             self.__reset_socket()
             try:
                 return dices.split("|_|")

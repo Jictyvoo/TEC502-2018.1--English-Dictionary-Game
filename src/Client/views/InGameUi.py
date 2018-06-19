@@ -96,6 +96,7 @@ class InGameUi(object):
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.playersInSession_label = QtWidgets.QLabel(self.scrollAreaWidgetContents_2)
         self.playersInSession_label.setObjectName("playersInSession_label")
+        self.playersInSession_label.setText(self._translate("room_name", "Players In Session:"))
         self.verticalLayout_4.addWidget(self.playersInSession_label)
         self.listWidget_2 = QtWidgets.QListWidget(self.scrollAreaWidgetContents_2)
         size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Expanding)
@@ -106,8 +107,6 @@ class InGameUi(object):
         self.listWidget_2.setMinimumSize(QtCore.QSize(20, 0))
         self.listWidget_2.setMaximumSize(QtCore.QSize(200, 16777215))
         self.listWidget_2.setObjectName("listWidget_2")
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget_2.addItem(item)
         self.verticalLayout_4.addWidget(self.listWidget_2)
         spacer_item = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_4.addItem(spacer_item)
@@ -167,7 +166,16 @@ class InGameUi(object):
         self.__timer.timeout.connect(callback_tick)
         self.__timer.start(1000)
 
-    def setup_ui(self, room_name, active=False, received_dices=None):
+    def __add_players_names(self, player_names):
+        __sortingEnabled = self.listWidget_2.isSortingEnabled()
+        self.listWidget_2.setSortingEnabled(False)
+        for name in player_names:
+            item = QtWidgets.QListWidgetItem()
+            item.setText(self._translate("listWidget_2", name))
+            self.listWidget_2.addItem(item)
+        self.listWidget_2.setSortingEnabled(__sortingEnabled)
+
+    def setup_ui(self, room_name, active=False, received_dices=None, player_names=None):
         if received_dices is None:
             received_dices = []
         self.__room_window = room_name
@@ -207,6 +215,7 @@ class InGameUi(object):
         if active:
             self.__players_in_room(room_name)
             self.__dices = received_dices
+            self.__add_players_names(player_names)
         else:
             from Client.util.DiceManipulator import DiceManipulator
             self.__dice_manipulator = DiceManipulator()
@@ -270,12 +279,6 @@ class InGameUi(object):
         room_name.setWindowTitle(self._translate("room_name", "Boggle Game!"))
         self.remainingTime.setText(self._translate("room_name", "Remaining Time:"))
         self.progressBar.setFormat(self._translate("room_name", "180 seconds"))
-        '''self.playersInSession_label.setText(_translate("room_name", "Players In Session:"))
-        __sortingEnabled = self.listWidget_2.isSortingEnabled()
-        self.listWidget_2.setSortingEnabled(False)
-        item = self.listWidget_2.item(0)
-        item.setText(_translate("room_name", "Foo | 5 points"))
-        self.listWidget_2.setSortingEnabled(__sortingEnabled)'''
         self.foundedWords_label.setText(self._translate("room_name", "Founded Words"))
         self.guessWord_label.setText(self._translate("room_name", "Guess Word:"))
         self.__test_word_button.setText(self._translate("room_name", "Test Word"))

@@ -7,6 +7,7 @@ class ConnectedClientThread(threading.Thread):
         self.__clientConnection = client_connection
         self.__clientAddress = client_address
         self.__room_controller_thread = room_controller_thread
+        self.__room_dict = {}
 
     def run(self):
         message = self.__clientConnection.recv(13).decode('utf-8')
@@ -36,6 +37,14 @@ class ConnectedClientThread(threading.Thread):
         elif message == "start__gaming":
             from Client.util.DiceManipulator import DiceManipulator
             dices = DiceManipulator()
-            send_string = "|_|".join(dices.randomize())
+            room_name = self.__clientConnection.recv(65).decode('utf-8')
+            if room_name not in self.__room_dict.keys():
+                    send_string = "|_|".join(dices.randomize())
+                    self.__room_dict[room_name] = send_string
+            else:
+                    send_string = self.__room_dict[room_name]
             self.__clientConnection.send(bytes(send_string, 'utf-8'))
+            players_names = self.__room_controller_thread.get_players_names(room_name)
+            print("Sending Players Names %s" % "|_|".join(players_names))
+            self.__clientConnection.send(bytes(str("|_|".join(players_names)), 'utf-8'))
         self.__clientConnection.close()

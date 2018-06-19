@@ -2,7 +2,7 @@ class DictionaryManipulator:
 
     def __init__(self):
         self.__dict = {}
-        with open("../en_US.dic", 'r') as content_file:
+        with open("./en_US.dic", 'r') as content_file:
             count = 0
             for line in content_file.readlines():
                 words = line.split("/")
